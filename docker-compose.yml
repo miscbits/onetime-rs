@@ -1,0 +1,23 @@
+services:
+  onetime-rs:
+    build:
+      context: .
+      dockerfile: ./build/dev/Dockerfile
+    environment:
+      REDIS_CONN: redis://onetime-redis:6379
+    ports:
+      - 8000:8000
+    restart: always
+    depends_on:
+      onetime-redis:
+        condition: service_started
+
+  onetime-redis:
+    image: redis:latest
+    volumes:
+      - ./storage/data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli ping | grep PONG"]
+      interval: 30s
+      retries: 5
+    restart: always
