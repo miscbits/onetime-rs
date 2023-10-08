@@ -14,6 +14,11 @@ tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 bb8-redis = "0.13"
 
+# used for encryption
+rust-argon2 = "2.0.0"
+rand = "0.8.5"
+aes-gcm-siv = "0.11.1"
+
 [dependencies.uuid]
 version = "1.4.1"
 features = [
