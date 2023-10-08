@@ -84,9 +84,10 @@ pub async fn create_secret(DatabaseConnection(mut conn): DatabaseConnection,
 
     let ciphertext = cipher.encrypt(nonce, payload.secret_content.as_ref()).unwrap();
 
+    let secret_id = Uuid::new_v4();
     let secret = CreateSecretResponse {
-        id: Uuid::new_v4(),
-        url: String::from("path/to/uuid/url")
+        id: secret_id,
+        url: String::from("/secrets/") + &secret_id.to_string()
     };
 
     let _ : () = conn.set(secret.id.to_string() + "_nonce", random_nonce_string).await.unwrap();    
