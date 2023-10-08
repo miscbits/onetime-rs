@@ -92,6 +92,7 @@ pub async fn create_secret(DatabaseConnection(mut conn): DatabaseConnection,
     let _ : () = conn.set(secret.id.to_string() + "_nonce", random_nonce_string).await.unwrap();    
     let _ : () = conn.set(secret.id.to_string(), ciphertext).await.unwrap();
     let _ : () = conn.expire(secret.id.to_string(), 86400).await.unwrap();
+    let _ : () = conn.expire(secret.id.to_string() + "_nonce", 86400).await.unwrap();
     (StatusCode::CREATED, Json(secret))
 }
 
