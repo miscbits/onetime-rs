@@ -2,7 +2,7 @@ services:
   onetime-rs:
     build:
       context: .
-      dockerfile: ./build/dev/Dockerfile
+      dockerfile: ./build/server/dev/Dockerfile
     environment:
       REDIS_CONN: redis://onetime-redis:6379
     ports:
@@ -21,3 +21,16 @@ services:
       interval: 30s
       retries: 5
     restart: always
+
+  onetime-frontend:
+    build:
+      context: .
+      dockerfile: ./build/client/dev/Dockerfile
+    environment:
+      VITE_ONETIME_API_URL: http://onetime-rs:8000/
+    ports:
+      - 8001:80
+    restart: always
+    depends_on:
+      onetime-rs:
+        condition: service_started

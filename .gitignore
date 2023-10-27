@@ -1,1 +1,3 @@
 storage/data
+.DS_Store
+onetime-frontend/node_modules
