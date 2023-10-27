@@ -10,7 +10,6 @@ export default class SecretService {
           "Accept": "*/*",
           "Accept-Encoding": "gzip, deflate, br"
         },
-        mode: 'no-cors',
         redirect: "follow",
         referrerPolicy: "no-referrer",
         body: JSON.stringify({
