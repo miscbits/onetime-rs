@@ -12,7 +12,7 @@ async function createSecretCallback(secret, password) {
 
 async function getSecretCallback(secretId, password) {
 	let secret_content = await secretService.getSecretRequest(secretId, password)
-	console.log('get secret')
+	console.log(secret_content)
 }
 </script>
 
